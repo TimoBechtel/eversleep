@@ -1,21 +1,21 @@
-const cacheName = 'cache-v1';
-const filesToCache = ['/', '/bundle.css', '/bundle.js'];
+const cacheName = 'cache-v2';
+const filesToCache = ['/', '/bundle.css', '/bundle.js', 'favicon.png'];
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
   event.waitUntil(
-    caches.open(cacheName).then(function(cache) {
+    caches.open(cacheName).then(function (cache) {
       return cache.addAll(filesToCache);
     })
   );
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches
       .match(event.request, {
         ignoreSearch: true,
       })
-      .then(function(response) {
+      .then(function (response) {
         if (response) {
           return response;
         }
@@ -24,12 +24,12 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', function (event) {
   event.waitUntil(
     // delete old caches
-    caches.keys().then(function(cacheNames) {
+    caches.keys().then(function (cacheNames) {
       return Promise.all(
-        cacheNames.map(function(foundCacheName) {
+        cacheNames.map(function (foundCacheName) {
           if (foundCacheName !== cacheName) {
             return caches.delete(foundCacheName);
           }
