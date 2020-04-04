@@ -1,0 +1,17 @@
+$color-accent-a: #f06e7c;
+$color-accent-b: #fa2f88;
+$color-gradient-accent: linear-gradient(
+  180deg,
+  $color-accent-a 0%,
+  $color-accent-b 100%
+);
+
+$color-foreground: #f5f5f5;
+
+$color-background-a: #525367;
+$color-background-b: #282934;
+$color-gradient-background: linear-gradient(
+  135deg,
+  $color-background-a 0%,
+  $color-background-b 100%
+);
