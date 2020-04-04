@@ -21,7 +21,7 @@
     "node-sass": "^4.13.1",
     "postcss-normalize": "^8.0.1",
     "postcss-preset-env": "^6.7.0",
-    "rollup": "^2.0.6",
+    "rollup": "^2.3.3",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-delete": "^1.2.0",
@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "chart.js": "^2.9.3",
-    "settings-ui": "^1.1.1"
+    "settings-ui": "^1.3.1"
   }
 }
