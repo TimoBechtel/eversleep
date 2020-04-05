@@ -18,3 +18,15 @@ export const assignProperties = (objectA, objectB) => {
     objectA[key] = objectB[isArray ? i : key];
   });
 };
+
+export const copy = (text) => {
+  const out = document.createElement('textarea');
+  out.style = 'position: fixed; opacity: 0;';
+  document.body.appendChild(out);
+  out.value = text;
+  out.select();
+  out.setSelectionRange(0, 99999);
+  const result = document.execCommand('copy');
+  document.body.removeChild(out);
+  return result;
+};

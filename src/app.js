@@ -3,8 +3,9 @@ import SettingsUI from 'settings-ui';
 import { selectPreset, templates } from './uiTemplates';
 import { init, update } from './pieChart';
 import { generateNaps } from './viewModelAdapter';
-import { load, save } from './configLoader';
-import { assignProperties } from './utils';
+import { load, save, shareLink } from './configLoader';
+import { assignProperties, copy } from './utils';
+import { snack } from './snackbar';
 
 if (navigator.serviceWorker) navigator.serviceWorker.register('/sw.js');
 
@@ -58,9 +59,21 @@ presetSelect.addChangeListener((key, value) => {
 
 document.getElementById('save-button').addEventListener('click', (e) => {
   save(presetStore.selectPreset, store);
-  const buttonText = e.target.innerHTML;
-  e.target.innerHTML = 'Saved configuration.';
-  setTimeout(() => {
-    e.target.innerHTML = buttonText;
-  }, 3000);
+  snack('Saved configuration');
+});
+
+document.getElementById('share-button').addEventListener('click', () => {
+  const link = shareLink(presetStore.selectPreset, store);
+  console.log(link);
+  // window.location.href = shareLink(presetStore.selectPreset, store);
+  if (navigator && navigator.share) {
+    navigator.share({
+      title: 'Eversleep',
+      text: 'A polyphasic sleep schedule',
+      url: link,
+    });
+  } else {
+    if (copy(link)) snack('Copied configuration link to clipboard');
+    else snack('Copy to clipboard failed');
+  }
 });

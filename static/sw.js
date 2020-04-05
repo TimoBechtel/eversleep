@@ -1,4 +1,4 @@
-const cacheName = 'cache-v2';
+const cacheName = 'cache-v3';
 const filesToCache = ['/', '/bundle.css', '/bundle.js', 'favicon.png'];
 
 self.addEventListener('install', function (event) {
