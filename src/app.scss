@@ -63,7 +63,12 @@ footer {
     padding: 10px 10px;
     border-radius: 3px;
     border: none;
+    transition: background-color 0.2s;
     background: rgba($color-foreground, 0.9);
+    &:hover {
+      background: lighten($color-background-a, 40);
+    }
+    cursor: pointer;
   }
   // max-width: 300px;
   @media only screen and (min-width: 600px) {
