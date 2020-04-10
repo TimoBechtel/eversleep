@@ -1,11 +1,13 @@
 import './app.scss';
+import 'oh-snack/dist/index.css';
 import SettingsUI from 'settings-ui';
 import { selectPreset, templates } from './uiTemplates';
 import { init, update } from './pieChart';
 import { generateNaps } from './viewModelAdapter';
 import { load, save, shareLink } from './configLoader';
-import { assignProperties, copy } from './utils';
-import { snack } from './snackbar';
+import { assign } from '@compactjs/assign';
+import { clipboard } from '@compactjs/clipboard';
+import { snack } from 'oh-snack';
 
 if (navigator.serviceWorker) navigator.serviceWorker.register('/sw.js');
 
@@ -44,7 +46,7 @@ const updateSettingsUi = (presetId) => {
 store = ui.bind(templates[presetStore.selectPreset]);
 
 if (loadedSettings.store) {
-  assignProperties(store, loadedSettings.store);
+  assign(store, loadedSettings.store);
   ui.update();
 }
 
@@ -57,7 +59,7 @@ presetSelect.addChangeListener((key, value) => {
   updateSettingsUi(value);
 });
 
-document.getElementById('save-button').addEventListener('click', (e) => {
+document.getElementById('save-button').addEventListener('click', () => {
   save(presetStore.selectPreset, store);
   snack('Saved configuration');
 });
@@ -73,7 +75,6 @@ document.getElementById('share-button').addEventListener('click', () => {
       url: link,
     });
   } else {
-    if (copy(link)) snack('Copied configuration link to clipboard');
-    else snack('Copy to clipboard failed');
+    clipboard(link); snack('Copied configuration link to clipboard');
   }
 });

@@ -1,5 +1,5 @@
 import Chart from 'chart.js';
-import { hDiff } from './utils';
+import { limit } from '@compactjs/limit';
 
 const generateDataset = (naps) => {
   const sortedNaps = naps.sort((n1, n2) => n1.start - n2.start);
@@ -10,13 +10,13 @@ const generateDataset = (naps) => {
     borderColor: '#525367',
   };
   sortedNaps.forEach((nap, i) => {
-    set.data.push(hDiff(nap.start, nap.end));
+    set.data.push(limit(nap.end - nap.start, 24));
     set.backgroundColor.push(gradient);
     let diff;
     if (sortedNaps[i + 1]) {
-      diff = hDiff(nap.end, sortedNaps[i + 1].start);
+      diff = limit(sortedNaps[i + 1].start - nap.end, 24);
     } else {
-      diff = hDiff(nap.end, sortedNaps[0].start);
+      diff = limit(sortedNaps[0].start - nap.end, 24);
     }
     if (diff !== 0) {
       set.data.push(diff);

@@ -33,8 +33,13 @@
     "semantic-release": "^17.0.4"
   },
   "dependencies": {
+    "@compactjs/assign": "^1.0.0",
+    "@compactjs/clipboard": "^1.0.0",
+    "@compactjs/limit": "^1.0.0",
+    "@compactjs/parse-time": "^1.0.0",
     "chart.js": "^2.9.3",
     "json2url": "^2.0.0",
+    "oh-snack": "^1.0.1",
     "settings-ui": "^1.3.1"
   }
 }
