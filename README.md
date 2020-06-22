@@ -37,7 +37,7 @@ This project uses semantic-release for automated release versions. So commits in
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/TimoBechtel/settings-ui/blob/master/LICENSE) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/TimoBechtel/settings-ui/blob/main/LICENSE) for more information.
 
 ## Contact
 
